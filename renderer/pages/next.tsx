@@ -5,14 +5,15 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Link from '../components/Link';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
+const useStyles = makeStyles((theme: Theme) => {
+  // tslint:disable: no-magic-numbers
+  return createStyles({
     root: {
       textAlign: 'center',
       paddingTop: theme.spacing(4),
     },
-  })
-);
+  });
+});
 
 const Next = () => {
   const classes = useStyles({});

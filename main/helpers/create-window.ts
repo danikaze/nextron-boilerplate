@@ -3,18 +3,36 @@ import {
   BrowserWindow,
   BrowserWindowConstructorOptions,
 } from 'electron';
-import * as Store from 'electron-store';
+import { default as ElectronStore } from 'electron-store';
 
-export default (windowName: string, options: BrowserWindowConstructorOptions): BrowserWindow => {
+interface WindowBounds {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+interface StoredData extends WindowBounds {
+  name: string;
+  'window-state'?: {
+    width?: number;
+    height?: number;
+  };
+}
+
+export default (
+  windowName: string,
+  options: BrowserWindowConstructorOptions
+): BrowserWindow => {
   const key = 'window-state';
   const name = `window-state-${windowName}`;
-  const store = new Store({ name });
+  const store = new ElectronStore<StoredData>({ name });
   const defaultSize = {
     width: options.width,
     height: options.height,
   };
-  let state = {};
-  let win;
+  let state = {} as WindowBounds;
+  let win: BrowserWindow;
 
   const restore = () => store.get(key, defaultSize);
 
@@ -29,7 +47,10 @@ export default (windowName: string, options: BrowserWindowConstructorOptions): B
     };
   };
 
-  const windowWithinBounds = (windowState, bounds) => {
+  const windowWithinBounds = (
+    windowState: WindowBounds,
+    bounds: WindowBounds
+  ) => {
     return (
       windowState.x >= bounds.x &&
       windowState.y >= bounds.y &&
@@ -38,16 +59,19 @@ export default (windowName: string, options: BrowserWindowConstructorOptions): B
     );
   };
 
-  const resetToDefaults = () => {
+  const resetToDefaults = (): WindowBounds => {
     const bounds = screen.getPrimaryDisplay().bounds;
-    return Object.assign({}, defaultSize, {
-      x: (bounds.width - defaultSize.width) / 2,
-      y: (bounds.height - defaultSize.height) / 2,
-    });
+    return {
+      ...defaultSize,
+      x: (bounds.width - defaultSize.width!) / 2,
+      y: (bounds.height - defaultSize.height!) / 2,
+    } as WindowBounds;
   };
 
-  const ensureVisibleOnSomeDisplay = windowState => {
-    const visible = screen.getAllDisplays().some(display => {
+  const ensureVisibleOnSomeDisplay = (
+    windowState: WindowBounds
+  ): WindowBounds => {
+    const visible = screen.getAllDisplays().some((display) => {
       return windowWithinBounds(windowState, display.bounds);
     });
     if (!visible) {
@@ -65,7 +89,7 @@ export default (windowName: string, options: BrowserWindowConstructorOptions): B
     store.set(key, state);
   };
 
-  state = ensureVisibleOnSomeDisplay(restore());
+  state = ensureVisibleOnSomeDisplay(restore() as StoredData);
 
   const browserOptions: BrowserWindowConstructorOptions = {
     ...options,

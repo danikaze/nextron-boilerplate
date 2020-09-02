@@ -2,7 +2,7 @@ import { app } from 'electron';
 import serve from 'electron-serve';
 import { createWindow } from './helpers';
 
-const isProd: boolean = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === 'production';
 
 if (isProd) {
   serve({ directory: 'app' });

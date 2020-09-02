@@ -1,41 +1,50 @@
-<p align="center"><img src="https://i.imgur.com/flcMvDC.png"></p>
+# nextron-boilerplate
 
-## Usage
+A boilerplate based in nextron with common utilities to work with Next.js and Electron.
 
-### Create an App
+## Features
 
-```zsh
-# with `nextron`
-$ nextron init my-app --example with-typescript-material-ui
+### Ready
 
-# with npx
-$ npx create-nextron-app my-app --example with-typescript-material-ui
+- TypeScript support
+- [Material UI](https://material-ui.com/)
+- [Prettier](https://prettier.io/)
+- [Linting](https://palantir.github.io/tslint/)
+- [Git hooks](https://github.com/typicode/husky)
 
-# with yarn
-$ yarn create nextron-app my-app --example with-typescript-material-ui
+### Planned
 
-# with pnpx
-$ pnpx create-nextron-app my-app --example with-typescript-material-ui
+- [TypeScript source path aliases support](https://stackoverflow.com/questions/51319613/in-vs-code-ts-cannot-find-module-src-xxx)
+- Build time constants (including [git revisions](https://www.npmjs.com/package/git-revision-webpack-plugin))
+- Build time secret constants
+- Server and client logs
+- i18n
+- Migrate to [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint)
+- Unit testing
+- Visual regression testing
+
+## Setup
+
+1. Clone this repository
+
+```
+git clone https://github.com/danikaze/nextron-boilerplate.git PROJECT_FOLDER
 ```
 
-### Install Dependencies
+2. Change the origin to the new repository
 
-```zsh
-$ cd my-app
-
-# using yarn or npm
-$ yarn (or `npm install`)
-
-# using pnpm
-$ pnpm install --shamefully-hoist
+```
+cd PROJECT_FOLDER
+git remote set-url YOUR_REMOTE_REPOSITORY.git
 ```
 
-### Use it
+3. Change the `name`, `description` and `version` if needed in [package.json].
 
-```zsh
-# development mode
-$ yarn dev (or `npm run dev` or `pnpm run dev`)
+4. Install the needed packages
 
-# production build
-$ yarn build (or `npm run build` or `pnpm run build`)
 ```
+npm install
+```
+
+
+

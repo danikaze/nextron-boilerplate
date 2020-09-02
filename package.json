@@ -1,32 +1,52 @@
 {
   "private": true,
   "name": "nextron-boilerplate",
-  "description": "My application description",
-  "version": "1.0.0",
-  "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+  "description": "Nextron-based Next+TypeScript boilerplate",
+  "version": "0.1.0",
+  "author": "danikaze <danikaze@gmail.com>",
   "main": "app/background.js",
   "scripts": {
     "dev": "nextron --port 9000",
     "build": "nextron build",
+    "test": "npm run lint",
+    "lint": "tslint -p tsconfig.json -c tslint.yaml",
+    "prettier": "prettier --write '**/*.{ts,tsx}'",
     "postinstall": "electron-builder install-app-deps"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier",
+      "pre-push": "npm run test"
+    }
+  },
   "dependencies": {
+    "@material-ui/core": "^4.10.1",
+    "@material-ui/styles": "^4.10.0",
+    "clsx": "^1.1.1",
     "electron-serve": "^1.0.0",
     "electron-store": "^5.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
-    "@material-ui/core": "^4.10.1",
     "@types/node": "^14.0.5",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "babel-loader": "^8.1.0",
     "electron": "^9.0.3",
     "electron-builder": "^22.7.0",
+    "husky": "^4.2.5",
     "next": "^9.4.4",
     "nextron": "^5.15.0",
+    "prettier": "^2.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "tslint": "^6.1.3",
+    "tslint-consistent-codestyle": "^1.16.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-lines-between-class-members": "^1.3.6",
+    "tslint-loader": "^3.5.4",
+    "tslint-microsoft-contrib": "^6.2.0",
+    "tslint-react": "^5.0.0",
     "typescript": "^3.9.5",
     "webpack": "^4.43.0"
   }
