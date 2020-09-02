@@ -1,6 +1,6 @@
 import { app } from 'electron';
 import serve from 'electron-serve';
-import { createWindow } from './helpers';
+import { createWindow } from '@utils/create-window';
 
 const isProd = process.env.NODE_ENV === 'production';
 

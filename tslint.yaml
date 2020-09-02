@@ -420,10 +420,8 @@ rules:
     - true
     - dev
     # Our custom aliases/absolute-pathes
-    - - '@api'
-      - '@components'
-      - '@constants'
-      - '@model'
-      - '@pages'
-      - '@td'
-      - '@util'
+    - - '@components'
+      - '@common-utils'
+      - '@main'
+      - '@renderer'
+      - '@utils'

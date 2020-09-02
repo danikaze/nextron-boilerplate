@@ -11,10 +11,10 @@ A boilerplate based in nextron with common utilities to work with Next.js and El
 - [Prettier](https://prettier.io/)
 - [Linting](https://palantir.github.io/tslint/)
 - [Git hooks](https://github.com/typicode/husky)
+- [TypeScript source path aliases support](https://stackoverflow.com/questions/51319613/in-vs-code-ts-cannot-find-module-src-xxx)
 
 ### Planned
 
-- [TypeScript source path aliases support](https://stackoverflow.com/questions/51319613/in-vs-code-ts-cannot-find-module-src-xxx)
 - Build time constants (including [git revisions](https://www.npmjs.com/package/git-revision-webpack-plugin))
 - Build time secret constants
 - Server and client logs
@@ -46,5 +46,10 @@ git remote set-url YOUR_REMOTE_REPOSITORY.git
 npm install
 ```
 
+## Configuration
 
+### TypeScript path aliases
 
+- For path aliases to be available in the main process, edit the [main/tsconfig.json](./main/tsconfig.json) file.
+- For path aliases to be available in the renderer process, edit the [renderer/tsconfig.json](./renderer/tsconfig.json) file.
+- Add the union of all the added aliases to the `no-implicit-dependencies` rule in the [tslint.yaml](./tslint.yaml) file.

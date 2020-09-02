@@ -11,7 +11,7 @@ const App = (props: AppProps) => {
   React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
+      jssStyles.parentElement!.removeChild(jssStyles);
     }
   }, []);
 
@@ -23,7 +23,7 @@ const App = (props: AppProps) => {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
-        <title>with-javascript-material-ui</title>
+        <title>Nextron-boilerplate</title>
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />

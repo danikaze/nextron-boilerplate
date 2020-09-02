@@ -20,10 +20,10 @@ interface StoredData extends WindowBounds {
   };
 }
 
-export default (
+export function createWindow(
   windowName: string,
   options: BrowserWindowConstructorOptions
-): BrowserWindow => {
+): BrowserWindow {
   const key = 'window-state';
   const name = `window-state-${windowName}`;
   const store = new ElectronStore<StoredData>({ name });
@@ -104,4 +104,4 @@ export default (
   win.on('close', saveState);
 
   return win;
-};
+}
