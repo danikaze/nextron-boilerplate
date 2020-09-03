@@ -1,0 +1,3 @@
+module.exports = {
+  RENDERER_SERVER_EXAMPLE: 'RENDERER_SERVER_EXAMPLE',
+};

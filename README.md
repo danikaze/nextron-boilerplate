@@ -12,11 +12,12 @@ A boilerplate based in nextron with common utilities to work with Next.js and El
 - [Linting](https://palantir.github.io/tslint/)
 - [Git hooks](https://github.com/typicode/husky)
 - [TypeScript source path aliases support](https://stackoverflow.com/questions/51319613/in-vs-code-ts-cannot-find-module-src-xxx)
+- Build time constants (including [git revisions](https://www.npmjs.com/package/git-revision-webpack-plugin))
+- Build time secret constants
 
 ### Planned
 
-- Build time constants (including [git revisions](https://www.npmjs.com/package/git-revision-webpack-plugin))
-- Build time secret constants
+- Read settings from files
 - Server and client logs
 - i18n
 - Migrate to [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint)
@@ -35,7 +36,9 @@ git clone https://github.com/danikaze/nextron-boilerplate.git PROJECT_FOLDER
 
 ```
 cd PROJECT_FOLDER
-git remote set-url YOUR_REMOTE_REPOSITORY.git
+git remote rm origin
+git remote add origin YOUR_REMOTE_REPOSITORY.git
+git branch --set-upstream-to=origin/master master
 ```
 
 3. Change the `name`, `description` and `version` if needed in [package.json].
@@ -53,3 +56,19 @@ npm install
 - For path aliases to be available in the main process, edit the [main/tsconfig.json](./main/tsconfig.json) file.
 - For path aliases to be available in the renderer process, edit the [renderer/tsconfig.json](./renderer/tsconfig.json) file.
 - Add the union of all the added aliases to the `no-implicit-dependencies` rule in the [tslint.yaml](./tslint.yaml) file.
+
+### Build-time constants definition
+
+This boilerplate already provide with basic global constants accessible in different contexts. Check [this document](./build-time-constants/README.md) for more information.
+
+Basic constants list is this:
+
+| Constant          | Main | Renderer |
+| ----------------- | ---- | -------- |
+| PACKAGE_NAME      | ✔    | ✔        |
+| PACKAGE_VERSION   | ✔    | ✔        |
+| COMMIT_HASH       | ✔    | ✔        |
+| COMMIT_HASH_SHORT | ✔    | ✔        |
+| IS_PRODUCTION     | ✔    | ✔        |
+| IS_SERVER         |      | ✔        |
+| BUILD_ID          |      | ✔        |

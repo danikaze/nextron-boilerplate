@@ -10,5 +10,12 @@
       "@utils": ["utils"],
       "@utils/*": ["utils/*"]
     }
-  }
+  },
+  "include": [
+    "../build-time-constants/global.d.ts",
+    "../build-time-constants/main.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": ["node_modules", "renderer/next.config.js", "app", "dist"]
 }

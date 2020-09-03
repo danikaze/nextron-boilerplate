@@ -1,14 +1,23 @@
 const { join } = require('path');
+const { getBuildTimeConstantsPlugins } = require('../build-time-constants');
 
 module.exports = {
-  webpack: (config) => {
+  webpack: (config, { buildId, dev, isServer, webpack }) => {
+    config.target = 'electron-renderer';
+
     // add extra paths to be processed by the existing babel loader
     const babelFolders = [join(__dirname, '..', 'common-utils')];
     addToBabel(config, babelFolders);
 
-    return Object.assign(config, {
-      target: 'electron-renderer',
-    });
+    // add build-time defined constants
+    config.plugins.push(
+      ...getBuildTimeConstantsPlugins(
+        `renderer-${isServer ? 'server' : 'client'}`,
+        { buildId, dev, isServer, webpack }
+      )
+    );
+
+    return config;
   },
 };
 

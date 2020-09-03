@@ -20,11 +20,42 @@ const useStyles = makeStyles((theme: Theme) => {
   });
 });
 
+/*
+ * To be removed in the real app,
+ * this just tests that all the constants are accessible
+ */
+function printBuildConstants() {
+  // tslint:disable: no-any object-literal-shorthand no-console
+  const data: { [key: string]: any } = {
+    GLOBAL_EXAMPLE: GLOBAL_EXAMPLE,
+    GLOBAL_SECRET_EXAMPLE: GLOBAL_SECRET_EXAMPLE,
+    BUILD_ID: BUILD_ID,
+    IS_SERVER: IS_SERVER,
+    IS_PRODUCTION: IS_PRODUCTION,
+    PACKAGE_NAME: PACKAGE_NAME,
+    PACKAGE_VERSION: PACKAGE_VERSION,
+    COMMIT_HASH: COMMIT_HASH,
+    COMMIT_HASH_SHORT: COMMIT_HASH_SHORT,
+  };
+
+  if (IS_SERVER) {
+    data.RENDERER_SERVER_EXAMPLE = RENDERER_SERVER_EXAMPLE;
+    data.RENDERER_SERVER_SECRET_EXAMPLE = RENDERER_SERVER_SECRET_EXAMPLE;
+  } else {
+    data.RENDERER_CLIENT_EXAMPLE = RENDERER_CLIENT_EXAMPLE;
+    data.RENDERER_CLIENT_SECRET_EXAMPLE = RENDERER_CLIENT_SECRET_EXAMPLE;
+  }
+
+  console.table(data);
+}
+
 const Home = () => {
   const classes = useStyles({});
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
   const handleClick = () => setOpen(true);
+
+  printBuildConstants();
 
   return (
     <React.Fragment>

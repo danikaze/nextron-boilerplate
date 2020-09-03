@@ -1,0 +1,3 @@
+module.exports = {
+  RENDERER_CLIENT_EXAMPLE: 'RENDERER_CLIENT_EXAMPLE',
+};

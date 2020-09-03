@@ -13,6 +13,14 @@
       "@utils/*": ["utils/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "../build-time-constants/global.d.ts",
+    "../build-time-constants/renderer.d.ts",
+    "../build-time-constants/renderer-client.d.ts",
+    "../build-time-constants/renderer-server.d.ts",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": ["node_modules", "app", "dist"]
 }
