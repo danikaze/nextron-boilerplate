@@ -49,6 +49,10 @@ git branch --set-upstream-to=origin/master master
 npm install
 ```
 
+## Folders
+
+Files placed in [main/static](/main/static) will be copied to the root of the build folder (not a `static` subfolder inside).
+
 ## Configuration
 
 ### TypeScript path aliases
