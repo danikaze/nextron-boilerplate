@@ -13,6 +13,8 @@ module.exports = {
       config.resolve.plugins = [];
     }
 
+    configureBabelLoader(config);
+
     config.resolve.plugins.push(
       new TsconfigPathsPlugin({ configFile: './main/tsconfig.json' })
     );
@@ -32,3 +34,28 @@ module.exports = {
     return config;
   },
 };
+
+/*
+ * If this issue gets fixed:
+ *   https://github.com/saltyshiomix/nextron/issues/97
+ * this function won't be needed anymore.
+ *
+ * Also:
+ *   npm remove @babel/plugin-proposal-optional-chaining
+ */
+function configureBabelLoader(config) {
+  const rule = config.module.rules.find(
+    (rule) =>
+      (Array.isArray(rule.use) &&
+        rule.use.filter((use) => use && /babel-loader/.test(use.loader))
+          .length > 0) ||
+      (typeof rule.use === 'object' && /babel-loader/.test(rule.use.loader))
+  );
+
+  if (!rule.use.options.plugins) {
+    rule.use.options.plugins = [];
+  }
+  rule.use.options.plugins.push('@babel/plugin-proposal-optional-chaining');
+
+  return rule;
+}
