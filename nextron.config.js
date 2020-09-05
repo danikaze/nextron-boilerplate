@@ -55,7 +55,10 @@ function configureBabelLoader(config) {
   if (!rule.use.options.plugins) {
     rule.use.options.plugins = [];
   }
-  rule.use.options.plugins.push('@babel/plugin-proposal-optional-chaining');
+  rule.use.options.plugins.push(
+    '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-proposal-optional-chaining'
+  );
 
   return rule;
 }
